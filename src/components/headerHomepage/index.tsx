@@ -4,7 +4,7 @@ import { IoMdMenu } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { Container, Content, Navigation, Search, Menu } from './style';
 
-export function Header() {
+export function HeaderHomepage() {
   return (
     <Container>
       <Content>
@@ -19,10 +19,10 @@ export function Header() {
               <Link to="/">início</Link>
             </li>
             <li>
-              <Link to="#">Séries</Link>
+              <Link to="/series">Séries</Link>
             </li>
             <li>
-              <Link to="#">Filmes</Link>
+              <Link to="/movies">Filmes</Link>
             </li>
             <li>
               <Link to="#">Bombando</Link>

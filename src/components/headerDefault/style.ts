@@ -1,21 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  padding: 2rem 4rem;
-
-  background: url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1aocbW.img');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
-
 export const Content = styled.header`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem;
+  border-bottom: 1px solid #333;
 `;
 
 export const Navigation = styled.nav`
@@ -25,8 +16,8 @@ export const Navigation = styled.nav`
   ul {
     height: 100%;
     display: flex;
-    align-self: flex-start;
     gap: 2rem;
+    align-self: flex-start;
   }
 
   ul li {
@@ -41,19 +32,18 @@ export const Navigation = styled.nav`
 `;
 
 export const Search = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
-
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50px;
-
   width: 60px;
   height: 60px;
-  overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+  border-radius: 50px;
 
+  overflow: hidden;
   cursor: pointer;
+
+  background-color: rgba(0, 0, 0, 0.6);
 
   div {
     min-width: 40px;
@@ -66,10 +56,10 @@ export const Search = styled.div`
 
   input {
     height: 100%;
-    padding: 0 0.5rem;
     border: none;
-    outline: none;
+    padding: 0 0.5rem;
 
+    outline: none;
     color: #fff;
     background: transparent;
 

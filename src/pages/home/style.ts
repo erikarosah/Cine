@@ -1,22 +1,21 @@
-import styled from 'styled-components';
-
 import 'swiper/css';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
   h2 {
-    padding: 2rem 0 0 2rem;
     font-size: 2rem;
+    padding: 2rem 0 0 2rem;
   }
 `;
 
-export const Content = styled.div`
-  min-height: 250px;
+export const Content = styled.main`
   display: flex;
-  padding: 2rem;
+  min-height: 250px;
   position: relative;
+  padding: 2rem;
   cursor: grab;
 `;
 
@@ -26,45 +25,44 @@ export const Image = styled.img`
   border-radius: 8px;
 
   &:hover ~ div {
-    transform: translateY(0);
     visibility: visible;
+    transform: translateY(0);
   }
 `;
 
 export const Details = styled.div`
   width: 23rem;
   display: flex;
+  visibility: hidden;
+  position: absolute;
   flex-direction: column;
-  text-align: center;
-  padding: 1rem;
+
+  bottom: 0;
   gap: 0.5rem;
-
-  background-color: #121212;
-
+  padding: 1rem;
   border-radius: 0 0 8px 8px;
 
-  transition: transform 0.5s ease-in-out;
-  transform: translateY(-100px);
-  visibility: hidden;
-
-  position: absolute;
-  bottom: 0;
-
   cursor: pointer;
+  text-align: center;
+
+  background-color: #121212;
+  transform: translateY(-100px);
+  transition: transform 0.5s ease-in-out;
 
   &:hover {
-    transform: translateY(0);
     visibility: visible;
+    transform: translateY(0);
   }
 
-  button {
-    background-color: transparent;
+  a {
     border: 1px solid #ccc;
     padding: 5px 0;
     border-radius: 8px;
-    color: #f2f2f2;
     margin-top: 0.5rem;
+
     cursor: pointer;
+    color: #f2f2f2;
+    background-color: transparent;
   }
 
   p {

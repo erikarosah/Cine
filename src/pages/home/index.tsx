@@ -1,65 +1,74 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import * as S from './style';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useMovieContext } from '../../context/MoviesContext';
-import { Header } from '../../components/header';
-import { Container, Content, Image, Details } from './style';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useCineContext } from '../../context/MoviesContext';
+import { HeaderHomepage } from '../../components/headerHomepage';
 
 export function Home() {
-  const { topPopularMovies, topRatedMovies, moviesProviders } = useMovieContext();
+  const {
+    FetchData,
+    topRatedMovies,
+    moviesProviders,
+    topPopularMovies,
+    setPopularMovies,
+    setTopRatedMovies,
+    setMoviesProviders,
+    FetchMoviesProviders,
+  } = useCineContext();
+
+  useEffect(() => {
+    FetchData('/movie/popular?language=pt-BR&page=1&region=ISO%203166-2', setPopularMovies);
+    FetchData('/movie/top_rated?language=pt-BR&page=1&region=ISO%203166-2', setTopRatedMovies);
+    FetchMoviesProviders('/watch/providers/movie?language=pt-BR&watch_region=BR', setMoviesProviders);
+  }, []);
 
   return (
-    <Container>
-      <Header />
+    <S.Container>
+      <HeaderHomepage />
       <h2>Brasil: top 10 em filmes hoje</h2>
-      <Content>
+      <S.Content>
         <Swiper spaceBetween={50} slidesPerView={5}>
-          {topRatedMovies &&
-            topRatedMovies.map((movie) => (
-              <Link to="/" key={movie.id}>
-                <SwiperSlide>
-                  <Image src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`} alt="" />
-                  <Details>
-                    <h3>{movie.title}</h3>
-                    <p>{movie.overview}</p>
-                    <span>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</span>
-                    <button>Saiba mais</button>
-                  </Details>
-                </SwiperSlide>
-              </Link>
-            ))}
+          {topPopularMovies?.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <S.Image src={`${import.meta.env.VITE_URL_API_IMAGES}${movie.backdrop_path}`} alt="" />
+              <S.Details>
+                <h3>{movie.title}</h3>
+                <p>{movie.overview}</p>
+                <span>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</span>
+                <Link to="/movie/details">Saiba mais</Link>
+              </S.Details>
+            </SwiperSlide>
+          ))}
         </Swiper>
-      </Content>
+      </S.Content>
       <h2>Em alta</h2>
-      <Content>
+      <S.Content>
         <Swiper spaceBetween={50} slidesPerView={5}>
-          {topPopularMovies &&
-            topPopularMovies.slice(0, 10).map((movie) => (
-              <Link to="/" key={movie.id}>
-                <SwiperSlide>
-                  <Image src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`} alt="" />
-                  <Details>
-                    <h3>{movie.title}</h3>
-                    <p>{movie.overview}</p>
-                    <p>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</p>
-                    <button>Saiba mais</button>
-                  </Details>
-                </SwiperSlide>
-              </Link>
-            ))}
+          {topRatedMovies?.slice(0, 10).map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <S.Image src={`${import.meta.env.VITE_URL_API_IMAGES}${movie.backdrop_path}`} alt="" />
+              <S.Details>
+                <h3>{movie.title}</h3>
+                <p>{movie.overview}</p>
+                <p>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</p>
+                <Link to="/movie/details">Saiba mais</Link>
+              </S.Details>
+            </SwiperSlide>
+          ))}
         </Swiper>
-      </Content>
+      </S.Content>
       <h2>Onde assistir</h2>
-      <Content>
+      <S.Content>
         <Swiper spaceBetween={50} slidesPerView={5}>
-          {moviesProviders &&
-            moviesProviders.map((provider) => (
-              <SwiperSlide key={provider.provider_id}>
-                <Image src={`https://image.tmdb.org/t/p/w300/${provider.logo_path}`} alt="" />
-                <h3>{provider.provider_name}</h3>
-              </SwiperSlide>
-            ))}
+          {moviesProviders?.slice(0, 10).map((provider) => (
+            <SwiperSlide key={provider.provider_id}>
+              <S.Image src={`${import.meta.env.VITE_URL_API_IMAGES}${provider.logo_path}`} alt="" />
+              <h3>{provider.provider_name}</h3>
+            </SwiperSlide>
+          ))}
         </Swiper>
-      </Content>
-    </Container>
+      </S.Content>
+    </S.Container>
   );
 }
