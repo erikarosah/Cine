@@ -22,6 +22,12 @@ export const Content = styled(Link)`
     max-width: 23rem;
     overflow: hidden;
   }
+
+  @media (max-width: 428px) {
+    div {
+      max-width: 15rem;
+    }
+  }
 `;
 
 export const Card = styled.img`
@@ -33,6 +39,11 @@ export const Card = styled.img`
 
   &:hover {
     transform: scale(1.01);
+  }
+
+  @media (max-width: 428px) {
+    width: 15rem;
+    height: auto;
   }
 `;
 

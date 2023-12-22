@@ -12,7 +12,7 @@ export function AppRoutes() {
       <Route path="/" element={<Home />} />
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/series" element={<SeriesPage />} />
-      <Route path="/movie/details" element={<DetailsPage />} />
+      <Route path="/movie/details/:title" element={<DetailsPage />} />
       <Route path="/movies/onfire" element={<OnFirePage />} />
       <Route path="*" element={<ErrorFallback />} />
     </Routes>

@@ -19,10 +19,11 @@ export const Content = styled.main`
   cursor: grab;
 `;
 
-export const Image = styled.img`
+export const Image = styled.img<{ openmenu: boolean }>`
   width: 23rem;
   height: 13rem;
   border-radius: 8px;
+  display: ${(props) => (props.openmenu ? 'none' : 'flex')};
 
   &:hover ~ div {
     visibility: visible;

@@ -36,7 +36,7 @@ export function PageDefault({ url, title }: PageDefaultProps) {
     <S.Container>
       <HeaderDefault />
       <h1 className="title">{title}</h1>
-      <S.Content to="/movie/details">
+      <S.Content to="">
         {data?.map((movie) => (
           <div key={movie.id}>
             <S.Card

@@ -3,12 +3,13 @@ import { IoMdMenu } from 'react-icons/io';
 import { CiSearch } from 'react-icons/ci';
 
 import * as S from './style';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useCineContext } from '../../context/MoviesContext';
+import { useModalMenuContext } from '../../context/ModalMenuContext';
 
 export function HeaderDefault() {
   const { search, setSearch } = useCineContext();
-  const navigate = useNavigate();
+  const { setOpenMenu, openMenu } = useModalMenuContext();
 
   function GoToSearchMovie(e: React.KeyboardEvent<HTMLElement>) {
     if (!search) {
@@ -16,18 +17,18 @@ export function HeaderDefault() {
     }
 
     if (e.key === 'Enter') {
-      navigate('/movie/details');
+      window.location.replace(`/movie/details/${search}`);
     }
   }
 
   return (
     <S.Content>
-      <S.Menu>
-        <IoMdMenu />
-      </S.Menu>
       <h1>
         <a href="/">CineFlix</a>
       </h1>
+      <S.Menu onClick={() => setOpenMenu(!openMenu)}>
+        <IoMdMenu />
+      </S.Menu>
 
       <S.Navigation>
         <ul>
@@ -42,7 +43,7 @@ export function HeaderDefault() {
           </li>
           <li>
             <Link to="/movies/onfire">
-              Bombando <FaFire />{' '}
+              Bombando <FaFire />
             </Link>
           </li>
         </ul>

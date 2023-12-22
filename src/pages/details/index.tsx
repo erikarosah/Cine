@@ -1,12 +1,12 @@
 import { PageDefault } from '../pageDefault';
-import { useCineContext } from '../../context/MoviesContext';
+import { useParams } from 'react-router-dom';
 
 export function DetailsPage() {
-  const { search } = useCineContext();
+  const params = useParams();
   return (
     <PageDefault
-      title={`Resultados para: ${search}`}
-      url={`/search/movie?query=${search}&include_adult=false&language=pt-BR&page=1`}
+      title={`Resultados para: ${params.title}`}
+      url={`/search/movie?query=${params.title}&include_adult=false&language=pt-BR&page=1`}
     />
   );
 }

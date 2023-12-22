@@ -28,6 +28,10 @@ export const Navigation = styled.nav`
   ul li:hover {
     filter: opacity(0.8);
   }
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 export const Search = styled.div`
@@ -71,8 +75,26 @@ export const Search = styled.div`
     width: auto;
     min-width: 200px;
   }
+
+  @media (max-width: 428px) {
+    display: none;
+  }
 `;
 
 export const Menu = styled.div`
+  width: 60px;
+  height: 60px;
   display: none;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
 `;
