@@ -8,10 +8,10 @@ import { MenuModal } from '../../components/menuModal';
 import { useModalMenuContext } from '../../context/ModalMenuContext';
 
 const widthScreen = {
-  xg: 1024,
-  g: 834,
-  m: 688,
-  sm: 600,
+  xg: 1180,
+  g: 1011,
+  m: 760,
+  sm: 670,
   xs: 428,
 };
 
@@ -45,6 +45,7 @@ export function Home() {
     function handleResize() {
       if (window.innerWidth <= widthScreen.xg) {
         setSlidePerView(4);
+        setspaceBetweenSlide(0);
       }
 
       if (window.innerWidth <= widthScreen.g) {
@@ -56,12 +57,11 @@ export function Home() {
       }
 
       if (window.innerWidth <= widthScreen.sm) {
-        setspaceBetweenSlide(200);
+        setspaceBetweenSlide(250);
       }
 
       if (window.innerWidth <= widthScreen.xs) {
         setSlidePerView(2);
-        setspaceBetweenSlide(150);
       }
     }
 

@@ -94,7 +94,7 @@ export const Menu = styled.div`
 
   background-color: rgba(0, 0, 0, 0.6);
 
-  @media (max-width: 700px) {
+  @media (max-width: 428px) {
     display: flex;
   }
 `;
