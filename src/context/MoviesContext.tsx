@@ -26,17 +26,22 @@ interface MoviesProvidersProps {
 
 interface ContextProps {
   page: number;
+  search: string;
   data: Array<MoviesProps>;
   topRatedMovies: Array<MoviesProps>;
   topPopularMovies: Array<MoviesProps>;
+  detailsMovie: Array<MoviesProps>;
   moviesProviders: Array<MoviesProvidersProps>;
+  setSearch: (query: string) => void;
   HandlePage: (prop: HandlePageProps) => void;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   setData: React.Dispatch<React.SetStateAction<MoviesProps[]>>;
   setPopularMovies: React.Dispatch<React.SetStateAction<MoviesProps[]>>;
   setTopRatedMovies: React.Dispatch<React.SetStateAction<MoviesProps[]>>;
+  setDetailsMovies: React.Dispatch<React.SetStateAction<MoviesProps[]>>;
   setMoviesProviders: React.Dispatch<React.SetStateAction<MoviesProvidersProps[]>>;
   FetchData: (url: string, arr: React.Dispatch<React.SetStateAction<MoviesProps[]>>) => void;
+  FetchMoviesDetails: (url: string, arr: React.Dispatch<React.SetStateAction<MoviesProps[]>>) => void;
   FetchMoviesProviders: (url: string, arr: React.Dispatch<React.SetStateAction<MoviesProvidersProps[]>>) => void;
 }
 
@@ -44,7 +49,9 @@ const MoviesContext = createContext<ContextProps>({} as ContextProps);
 
 export function MoviesProvider({ children }: ChildrenProps) {
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
   const [data, setData] = useState<MoviesProps[]>([]);
+  const [detailsMovie, setDetailsMovies] = useState<MoviesProps[]>([]);
   const [topRatedMovies, setTopRatedMovies] = useState<MoviesProps[]>([]);
   const [topPopularMovies, setPopularMovies] = useState<MoviesProps[]>([]);
   const [moviesProviders, setMoviesProviders] = useState<MoviesProvidersProps[]>([]);
@@ -57,18 +64,37 @@ export function MoviesProvider({ children }: ChildrenProps) {
 
     setPage((value) => value - 1);
   }
+
   async function FetchData(url: string, arr: React.Dispatch<React.SetStateAction<MoviesProps[]>>) {
+    const controller = new AbortController();
+
     try {
       instanceAxios.get(url).then((data) => arr(data.data.results));
     } catch (error) {
       console.log(error);
+      controller.abort();
     }
   }
+
   async function FetchMoviesProviders(url: string, arr: React.Dispatch<React.SetStateAction<MoviesProvidersProps[]>>) {
+    const controller = new AbortController();
+
     try {
       instanceAxios.get(url).then((data) => arr(data.data.results));
     } catch (error) {
       console.log(error);
+      controller.abort();
+    }
+  }
+
+  async function FetchMoviesDetails(url: string, arr: React.Dispatch<React.SetStateAction<MoviesProps[]>>) {
+    const controller = new AbortController();
+
+    try {
+      instanceAxios.get(url).then((data) => arr(data.data.results));
+    } catch (error) {
+      console.log(error);
+      controller.abort();
     }
   }
 
@@ -77,6 +103,8 @@ export function MoviesProvider({ children }: ChildrenProps) {
       value={{
         page,
         data,
+        search,
+        detailsMovie,
         topRatedMovies,
         moviesProviders,
         topPopularMovies,
@@ -84,9 +112,12 @@ export function MoviesProvider({ children }: ChildrenProps) {
         setPage,
         FetchData,
         HandlePage,
-        setMoviesProviders,
-        setTopRatedMovies,
+        setSearch,
+        setDetailsMovies,
         setPopularMovies,
+        setTopRatedMovies,
+        FetchMoviesDetails,
+        setMoviesProviders,
         FetchMoviesProviders,
       }}
     >

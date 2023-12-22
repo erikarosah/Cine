@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const Content = styled.main`
   display: flex;
-  min-height: 250px;
+  min-height: 200px;
   position: relative;
   padding: 2rem;
   cursor: grab;

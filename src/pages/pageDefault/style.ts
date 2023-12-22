@@ -6,16 +6,22 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  h1 {
+  .title {
+    border-top: 1px solid #333;
     padding: 2rem;
   }
 `;
 
 export const Content = styled(Link)`
-  display: flex;
   gap: 2rem;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  div {
+    max-width: 23rem;
+    overflow: hidden;
+  }
 `;
 
 export const Card = styled.img`

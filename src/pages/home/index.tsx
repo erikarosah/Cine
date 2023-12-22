@@ -18,9 +18,12 @@ export function Home() {
   } = useCineContext();
 
   useEffect(() => {
-    FetchData('/movie/popular?language=pt-BR&page=1&region=ISO%203166-2', setPopularMovies);
-    FetchData('/movie/top_rated?language=pt-BR&page=1&region=ISO%203166-2', setTopRatedMovies);
-    FetchMoviesProviders('/watch/providers/movie?language=pt-BR&watch_region=BR', setMoviesProviders);
+    FetchData(`/movie/popular?language=pt-BR&page=1&region=ISO%203166-2`, setPopularMovies);
+    FetchData(`/movie/top_rated?language=pt-BR&page=1&region=ISO%203166-2`, setTopRatedMovies);
+  }, []);
+
+  useEffect(() => {
+    FetchMoviesProviders(`/watch/providers/tv`, setMoviesProviders);
   }, []);
 
   return (
@@ -36,7 +39,7 @@ export function Home() {
                 <h3>{movie.title}</h3>
                 <p>{movie.overview}</p>
                 <span>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</span>
-                <Link to="/movie/details">Saiba mais</Link>
+                <Link to={`/movie/details/${movie.id}`}>Saiba mais</Link>
               </S.Details>
             </SwiperSlide>
           ))}
@@ -52,7 +55,7 @@ export function Home() {
                 <h3>{movie.title}</h3>
                 <p>{movie.overview}</p>
                 <p>Classificação: {movie.vote_average.toFixed(2).replace('.', ',')}</p>
-                <Link to="/movie/details">Saiba mais</Link>
+                <Link to={`/movie/details/${movie.id}`}>Saiba mais</Link>
               </S.Details>
             </SwiperSlide>
           ))}

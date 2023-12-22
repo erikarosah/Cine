@@ -7,5 +7,5 @@ export const Container = styled.div`
 
 export const Content = styled.main`
   display: flex;
-  margin: 0 auto;
+  flex-wrap: wrap;
 `;

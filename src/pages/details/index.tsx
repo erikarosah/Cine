@@ -1,11 +1,12 @@
-import * as S from './style';
-import { HeaderDefault } from '../../components/headerDefault';
+import { PageDefault } from '../pageDefault';
+import { useCineContext } from '../../context/MoviesContext';
 
 export function DetailsPage() {
+  const { search } = useCineContext();
   return (
-    <S.Container>
-      <HeaderDefault />
-      <S.Content></S.Content>
-    </S.Container>
+    <PageDefault
+      title={`Resultados para: ${search}`}
+      url={`/search/movie?query=${search}&include_adult=false&language=pt-BR&page=1`}
+    />
   );
 }

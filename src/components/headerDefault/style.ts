@@ -6,7 +6,6 @@ export const Content = styled.header`
   justify-content: space-between;
 
   padding: 2rem;
-  border-bottom: 1px solid #333;
 `;
 
 export const Navigation = styled.nav`

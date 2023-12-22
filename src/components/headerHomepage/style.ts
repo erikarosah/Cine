@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
-  padding: 2rem 4rem;
   position: relative;
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background: url('https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA1aocbW.img');
+  background: url('https://www.serieously.com/app/uploads/2023/12/wonka-avec-timothee-chalamet-en-willy-wonka.jpg');
 `;
 
 export const Content = styled.header`
