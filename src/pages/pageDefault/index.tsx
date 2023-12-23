@@ -6,6 +6,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import ImageDefault from '../../assets/no_image.png';
 import { useCineContext } from '../../context/MoviesContext';
 import { HeaderDefault } from '../../components/headerDefault';
+import { Loading } from '../../components/loading';
 
 interface PageDefaultProps {
   url: string;
@@ -13,7 +14,7 @@ interface PageDefaultProps {
 }
 
 export function PageDefault({ url, title }: PageDefaultProps) {
-  const { FetchData, setData, data, HandlePage, setPage, page, search } = useCineContext();
+  const { FetchData, setData, data, HandlePage, setPage, page, search, loading } = useCineContext();
   const urlOfPage = window.location.href;
 
   useEffect(() => {
@@ -31,6 +32,10 @@ export function PageDefault({ url, title }: PageDefaultProps) {
   useEffect(() => {
     FetchData(`${url}&page=${page}&api_key=${import.meta.env.VITE_API_KEY}`, setData);
   }, [search]);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <S.Container>

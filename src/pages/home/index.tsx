@@ -6,6 +6,7 @@ import { useCineContext } from '../../context/MoviesContext';
 import { HeaderHomepage } from '../../components/headerHomepage';
 import { MenuModal } from '../../components/menuModal';
 import { useModalMenuContext } from '../../context/ModalMenuContext';
+import { Loading } from '../../components/loading';
 
 const widthScreen = {
   xg: 1180,
@@ -21,6 +22,7 @@ export function Home() {
 
   const {
     FetchData,
+    loading,
     topRatedMovies,
     moviesProviders,
     topPopularMovies,
@@ -73,6 +75,10 @@ export function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <S.Container>

@@ -33,12 +33,6 @@ export const Content = styled.div<{ modalactive: boolean }>`
     padding: 1rem;
     display: flex;
     font-size: 1.8rem;
-
-    div {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-    }
   }
 
   a {
@@ -70,6 +64,11 @@ export const Content = styled.div<{ modalactive: boolean }>`
   }
 `;
 
+export const BtnHandleModal = styled.button`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
 export const List = styled.ul`
   height: 70%;
   display: flex;

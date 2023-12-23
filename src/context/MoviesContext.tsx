@@ -27,6 +27,7 @@ interface MoviesProvidersProps {
 interface ContextProps {
   page: number;
   search: string;
+  loading: boolean;
   data: Array<MoviesProps>;
   topRatedMovies: Array<MoviesProps>;
   topPopularMovies: Array<MoviesProps>;
@@ -49,6 +50,7 @@ const MoviesContext = createContext<ContextProps>({} as ContextProps);
 
 export function MoviesProvider({ children }: ChildrenProps) {
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [data, setData] = useState<MoviesProps[]>([]);
   const [detailsMovie, setDetailsMovies] = useState<MoviesProps[]>([]);
@@ -70,6 +72,7 @@ export function MoviesProvider({ children }: ChildrenProps) {
 
     try {
       instanceAxios.get(url).then((data) => arr(data.data.results));
+      setLoading(false);
     } catch (error) {
       console.log(error);
       controller.abort();
@@ -81,6 +84,7 @@ export function MoviesProvider({ children }: ChildrenProps) {
 
     try {
       instanceAxios.get(url).then((data) => arr(data.data.results));
+      setLoading(false);
     } catch (error) {
       console.log(error);
       controller.abort();
@@ -92,6 +96,7 @@ export function MoviesProvider({ children }: ChildrenProps) {
 
     try {
       instanceAxios.get(url).then((data) => arr(data.data.results));
+      setLoading(false);
     } catch (error) {
       console.log(error);
       controller.abort();
@@ -104,6 +109,7 @@ export function MoviesProvider({ children }: ChildrenProps) {
         page,
         data,
         search,
+        loading,
         detailsMovie,
         topRatedMovies,
         moviesProviders,

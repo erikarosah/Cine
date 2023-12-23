@@ -27,9 +27,9 @@ export function MenuModal() {
         <RemoveScroll>
           <S.Content modalactive={openMenu}>
             <header>
-              <div onClick={() => setOpenMenu(!openMenu)}>
+              <S.BtnHandleModal onClick={() => setOpenMenu(!openMenu)}>
                 <MdClose />
-              </div>
+              </S.BtnHandleModal>
               <a href="/">CineFlix</a>
             </header>
             <input
